@@ -5,10 +5,6 @@ import com.bekzodkeldiyarov.springpetproject.model.Pet;
 import java.util.Set;
 
 
-public interface PetService {
-    Pet findByLastId(Long id);
+public interface PetService extends CrudService<Pet, Long> {
 
-    Pet save(Pet owner);
-
-    Set<Pet> findAll();
 }

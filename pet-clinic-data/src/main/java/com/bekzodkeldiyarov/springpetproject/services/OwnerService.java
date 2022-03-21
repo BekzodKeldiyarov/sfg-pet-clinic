@@ -6,12 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 
-public interface OwnerService {
-    Owner findByLastId(Long id);
+public interface OwnerService extends CrudService<Owner, Long>{
 
-    Owner findByLastName(String lastName);
-
-    Owner save(Owner owner);
-
-    Set<Owner> findAll();
 }
