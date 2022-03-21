@@ -1,10 +1,14 @@
 package com.bekzodkeldiyarov.springpetproject.services.map;
 
 import com.bekzodkeldiyarov.springpetproject.model.Owner;
+import com.bekzodkeldiyarov.springpetproject.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
+    public OwnerServiceMap() {
+    }
+
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
@@ -28,5 +32,15 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> {
     @Override
     public void delete(Owner object) {
         super.delete(object);
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
+    }
+
+    @Override
+    public Owner save(Owner object) {
+        return null;
     }
 }
