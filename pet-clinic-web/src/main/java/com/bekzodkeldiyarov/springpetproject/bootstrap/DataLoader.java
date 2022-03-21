@@ -12,11 +12,9 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
 
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-
+    public DataLoader(OwnerService ownerService) {
+        this.ownerService = ownerService;
     }
-
 
     @Override
     public void run(String... args) throws Exception {
