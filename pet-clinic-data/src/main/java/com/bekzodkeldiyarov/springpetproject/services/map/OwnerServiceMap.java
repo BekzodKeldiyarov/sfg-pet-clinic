@@ -2,9 +2,11 @@ package com.bekzodkeldiyarov.springpetproject.services.map;
 
 import com.bekzodkeldiyarov.springpetproject.model.Owner;
 import com.bekzodkeldiyarov.springpetproject.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     public OwnerServiceMap() {
     }
