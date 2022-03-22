@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
+    private final VetService vetService;
 
-    public DataLoader(OwnerService ownerService) {
+    public DataLoader(OwnerService ownerService, VetService vetService) {
         this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
@@ -32,6 +34,5 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner2);
 
         System.out.println("Owners loaded...");
-
     }
 }

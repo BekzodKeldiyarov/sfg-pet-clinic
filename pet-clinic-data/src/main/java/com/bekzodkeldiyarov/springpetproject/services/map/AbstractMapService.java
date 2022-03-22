@@ -1,12 +1,14 @@
 package com.bekzodkeldiyarov.springpetproject.services.map;
 
+import com.bekzodkeldiyarov.springpetproject.model.BaseEntity;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public abstract class AbstractMapService<T, ID> {
-    public Map<ID, T> map = new HashMap<>();
+    protected Map<ID, T> map = new HashMap<>();
 
     public Set<T> findAll() {
         return new HashSet<>(map.values());
