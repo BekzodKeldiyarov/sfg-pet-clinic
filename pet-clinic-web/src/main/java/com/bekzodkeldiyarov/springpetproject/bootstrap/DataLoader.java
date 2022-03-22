@@ -1,6 +1,7 @@
 package com.bekzodkeldiyarov.springpetproject.bootstrap;
 
 import com.bekzodkeldiyarov.springpetproject.model.Owner;
+import com.bekzodkeldiyarov.springpetproject.model.Vet;
 import com.bekzodkeldiyarov.springpetproject.services.OwnerService;
 import com.bekzodkeldiyarov.springpetproject.services.VetService;
 import com.bekzodkeldiyarov.springpetproject.services.map.OwnerServiceMap;
@@ -34,5 +35,13 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner2);
 
         System.out.println("Owners loaded...");
+
+        Vet vet = new Vet();
+        vet.setId(1L);
+        vet.setFirstName("Whiskey");
+        vet.setLastName("K");
+
+        vetService.save(vet);
+        System.out.println("Vets loaded...");
     }
 }
