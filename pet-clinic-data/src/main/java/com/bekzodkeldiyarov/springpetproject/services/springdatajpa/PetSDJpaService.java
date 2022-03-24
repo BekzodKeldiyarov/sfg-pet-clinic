@@ -4,11 +4,15 @@ import com.bekzodkeldiyarov.springpetproject.model.Pet;
 import com.bekzodkeldiyarov.springpetproject.model.PetType;
 import com.bekzodkeldiyarov.springpetproject.repositories.PetRepository;
 import com.bekzodkeldiyarov.springpetproject.services.PetService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Service
+@Profile("springdatajpa")
 public class PetSDJpaService implements PetService {
     private final PetRepository petRepository;
 

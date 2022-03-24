@@ -1,10 +1,7 @@
 package com.bekzodkeldiyarov.springpetproject.bootstrap;
 
 import com.bekzodkeldiyarov.springpetproject.model.*;
-import com.bekzodkeldiyarov.springpetproject.services.OwnerService;
-import com.bekzodkeldiyarov.springpetproject.services.PetTypeService;
-import com.bekzodkeldiyarov.springpetproject.services.SpecialtyService;
-import com.bekzodkeldiyarov.springpetproject.services.VetService;
+import com.bekzodkeldiyarov.springpetproject.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,18 +13,20 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
     public void run(String... args) throws Exception {
         int count = petTypeService.findAll().size();
-        if(count==0) {
+        if (count == 0) {
             loadData();
         }
     }
@@ -96,5 +95,16 @@ public class DataLoader implements CommandLineRunner {
 
         vetService.save(vet);
         System.out.println("Vets loaded...");
+
+
+        Visit visit = new Visit();
+        visit.setPet(fionaCat);
+        fionaCat.getVisits().add(visit);
+        visit.setDate(LocalDate.now().plusDays(1));
+        visit.setDescription("Fionas cat");
+        visitService.save(visit);
+
+        System.out.printf("The total number of visits %d\n", visitService.findAll().size());
+
     }
 }
