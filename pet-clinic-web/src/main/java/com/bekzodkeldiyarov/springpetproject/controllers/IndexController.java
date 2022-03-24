@@ -8,7 +8,14 @@ public class IndexController {
 
     @GetMapping({"/", "", "index", "index.html"})
     public String index() {
-        System.out.println("Test");
         return "index";
     }
+
+
+    @GetMapping("/oups")
+    public String oups() {
+        return "notimplemented";
+    }
+
+
 }
