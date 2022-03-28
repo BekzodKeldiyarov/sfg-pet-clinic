@@ -6,6 +6,7 @@ import com.bekzodkeldiyarov.springpetproject.repositories.PetRepository;
 import com.bekzodkeldiyarov.springpetproject.repositories.PetTypeRepository;
 import com.bekzodkeldiyarov.springpetproject.repositories.VetRepository;
 import com.bekzodkeldiyarov.springpetproject.services.OwnerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
@@ -17,6 +18,7 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
+@Slf4j
 public class OwnerSDJpaService implements OwnerService {
     private final OwnerRepository ownerRepository;
     private final PetRepository petRepository;
@@ -39,11 +41,7 @@ public class OwnerSDJpaService implements OwnerService {
 
     @Override
     public Owner findById(Long id) {
-        Optional<Owner> optionalOwner = ownerRepository.findById(id);
-        if (optionalOwner.isPresent()) {
-            return optionalOwner.get();
-        }
-        return null;
+        return ownerRepository.findById(id).orElse(null);
     }
 
     @Override
