@@ -1,7 +1,6 @@
 package com.bekzodkeldiyarov.springpetproject.controllers;
 
 import com.bekzodkeldiyarov.springpetproject.services.OwnerService;
-import com.bekzodkeldiyarov.springpetproject.services.map.OwnerServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +18,13 @@ public class OwnerController {
     }
 
     @GetMapping({"", "/", "/index"})
-    public String ownersIndex(Model model) {
+    public String listAll(Model model) {
         model.addAttribute("owners", ownerService.findAll());
         return "owners/index";
     }
 
     @GetMapping("/find")
-    public String ownersFind() {
+    public String findOwners() {
         return "notimplemented";
     }
 
