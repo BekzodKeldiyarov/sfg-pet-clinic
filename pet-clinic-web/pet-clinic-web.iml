@@ -139,5 +139,6 @@
     <orderEntry type="library" name="Maven: org.webjars:jquery-ui:1.11.4" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:bootstrap:3.3.6" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.28" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.22" level="project" />
   </component>
 </module>
