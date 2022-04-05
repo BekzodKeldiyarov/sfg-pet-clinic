@@ -56,7 +56,7 @@ public class PetController {
         owner.getPets().add(pet);
         pet.setOwner(owner);
         Set<PetType> petTypes = petTypeService.findAll();
-        model.addAttribute("owner", owner);
+
         model.addAttribute("petTypes", petTypes);
         model.addAttribute("pet", pet);
         return VIEW_PET_CREATE_OR_UPDATE_PATH;
