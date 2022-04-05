@@ -54,6 +54,7 @@ public class PetController {
         Pet pet = new Pet();
         Owner owner = ownerService.findById(ownerID);
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         Set<PetType> petTypes = petTypeService.findAll();
         model.addAttribute("owner", owner);
         model.addAttribute("petTypes", petTypes);
