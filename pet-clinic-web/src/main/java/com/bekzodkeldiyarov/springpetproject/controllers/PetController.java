@@ -55,15 +55,13 @@ public class PetController {
         Owner owner = ownerService.findById(ownerID);
         owner.getPets().add(pet);
         pet.setOwner(owner);
-        Set<PetType> petTypes = petTypeService.findAll();
 
-        model.addAttribute("petTypes", petTypes);
         model.addAttribute("pet", pet);
         return VIEW_PET_CREATE_OR_UPDATE_PATH;
     }
 
     @PostMapping("/pets/new")
-    public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, Model model) {
+    public String processCreationForm(@Valid Pet pet, Owner owner, BindingResult result, Model model) {
         if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
             result.rejectValue("name", "duplicate", "already exists");
         }

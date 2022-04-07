@@ -20,6 +20,7 @@ import java.util.Map;
 @Slf4j
 public class OwnerController {
     private final OwnerService ownerService;
+    private final String VIEW_CREATE_OR_UPDATE_OWNER_FORM = "owners/createOrUpdateOwnerForm";
 
     @Autowired
     public OwnerController(OwnerService ownerService) {
@@ -31,11 +32,6 @@ public class OwnerController {
         dataBinder.setDisallowedFields("id");
     }
 
-//    @GetMapping({"", "/", "/index"})
-//    public String listAll(Model model) {
-//        model.addAttribute("owners", ownerService.findAll());
-//        return "owners/index";
-//    }
 
     @GetMapping("/find")
     public String findOwners(Model model) {
@@ -75,13 +71,13 @@ public class OwnerController {
     public String initCreatingForm(Model model) {
         Owner owner = Owner.builder().build();
         model.addAttribute("owner", owner);
-        return "owners/createOrUpdateOwnerForm";
+        return VIEW_CREATE_OR_UPDATE_OWNER_FORM;
     }
 
     @PostMapping("/new")
     public String processCreatingForm(@Valid Owner owner, BindingResult result) {
         if (result.hasErrors()) {
-            return "/createOrUpdateOwnerForm";
+            return VIEW_CREATE_OR_UPDATE_OWNER_FORM;
         } else {
             Owner savedOwner = ownerService.save(owner);
             return "redirect:/owners/" + savedOwner.getId();
@@ -90,21 +86,15 @@ public class OwnerController {
 
     @GetMapping("/{ownerID}/edit")
     public String initUpdateForm(@PathVariable Long ownerID, Model model) {
-        Owner returnedOwner = ownerService.findById(ownerID);
-        model.addAttribute("owner", returnedOwner);
-        return "owners/createOrUpdateOwnerForm";
+        model.addAttribute("owner", ownerService.findById(ownerID));
+        return VIEW_CREATE_OR_UPDATE_OWNER_FORM;
     }
 
 
     @PostMapping("/{ownerID}/edit")
     public String processUpdateForm(@Valid Owner owner, BindingResult result, @PathVariable Long ownerID) {
-        log.info(owner.getFirstName());
-        log.info(owner.getLastName());
-        log.info(owner.getAddress());
-        log.info(owner.getCity());
-        log.info(owner.getTelephone());
         if (result.hasErrors()) {
-            return "owners/createOrUpdateOwnerForm";
+            return VIEW_CREATE_OR_UPDATE_OWNER_FORM;
         } else {
             owner.setId(ownerID);
             log.info(owner.getId() + "");
@@ -112,6 +102,5 @@ public class OwnerController {
             return "redirect:/owners/" + updatedOwner.getId();
         }
     }
-
 
 }
